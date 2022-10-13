@@ -1,0 +1,3 @@
+function ChatBar(){
+    return 
+}

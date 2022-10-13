@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
-  get '/hello', to: 'application#hello_world'
+  scope :api do
+    resources :usersinservers, only:[]
+    resources :chats, only:[]
+    resources :chatrooms, only:[]
+    resources :servers, only: [:index, :create]
+    resources :users, only:[]
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  post "/login", to: "sessions#create"
+  get "/me", to: "users#show"
+  post "/signup", to: "users#create"
+  delete "/logout", to: "sessions#destroy"
 end

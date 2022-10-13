@@ -1,17 +1,26 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import CreateServer from "./CreateServer";
+import Home from "./Home";
+import Login from "./Login/Sign-up/Login";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(undefined);
 
   useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
+    fetch("/me").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
+      }
+    });
   }, []);
 
   return (
     <div className="App">
-      <h1>Page Count: {count}</h1>
+      {user ? (
+        <Home user={user} setUser={setUser} />
+      ) : (
+        <Login setUser={setUser} />
+      )}
     </div>
   );
 }
