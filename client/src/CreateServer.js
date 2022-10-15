@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import NavBar from "./NavBar";
+import "./CreateServer.css"
 
 function CreateServer() {
     const [serverName, setServerName] = useState("")
@@ -26,24 +27,26 @@ function CreateServer() {
     return (
         <div>
             <NavBar />
-            Create a new server!
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="server_name">Server Name:</label>
-                <input
-                type="text"
-                id="server_name"
-                value={serverName}
-                onChange={(e) => setServerName(e.target.value)}
-                />
-                <label htmlFor="server_Img">Server Icon:</label>
-                <input
-                type="text"
-                id="server_Img"
-                value={serverImg}
-                onChange={(e) => setServerImg(e.target.value)}
-                />
-                <button type="submit">Submit</button>
-            </form>
+            <div className="create-server">
+                Create a new server!
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="server_name">Server Name:</label>
+                    <input
+                    type="text"
+                    id="server_name"
+                    value={serverName}
+                    onChange={(e) => setServerName(e.target.value)}
+                    />
+                    <label htmlFor="server_Img">Server Icon:</label>
+                    <input
+                    type="text"
+                    id="server_Img"
+                    value={serverImg}
+                    onChange={(e) => setServerImg(e.target.value)}
+                    />
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
         </div>
     )
 }

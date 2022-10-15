@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CreateServer from "./CreateServer";
 import Home from "./Home";
 import Login from "./Login/Sign-up/Login";
+import "./App.css"
 
 function App() {
   const [user, setUser] = useState(undefined);

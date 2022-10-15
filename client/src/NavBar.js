@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-// import styled from "styled-components"
+import "./NavStyle.css"
 
 function NavBar({ logout }) {
     const [servers, setServers] = useState([])
@@ -27,20 +27,20 @@ function NavBar({ logout }) {
     const server = servers.map((server) => {
         console.log(server)
         return (
-            <div>
-                <button key={server.name}>{server.name}</button>
-            </div>
+            <li><a href="">{server.name}</a></li>
         )
         
     })
 
     return (
     <nav className="navbar">
-        <div>
+        <ul>
             {server}
-        </div>
-        <Link to="/create_server">Create Server?</Link>
-        <button onClick={handleClick}>Logout</button>
+            <li><a href="/create_server">Create Server?</a></li>
+            <li><a href="/" onClick={handleClick}>Logout</a></li>
+        </ul>
+        {/* <Link to="/create_server">Create Server?</Link> */}
+        {/* <button onClick={handleClick}>Logout</button> */}
         {/* <div className="link">
             <Link to="/">Friends</Link>
         </div>

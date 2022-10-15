@@ -6,8 +6,10 @@ import { Route, Router } from "react-router-dom";
 function Home({ user, setUser }) {
   return (
     <div>
-      Home Page
       <NavBar logout={setUser} />
+      <div className="body">
+        Home Page
+      </div>
     </div>
   );
 }
