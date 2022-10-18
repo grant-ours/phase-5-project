@@ -1,12 +1,10 @@
 import React from "react";
 import NavBar from "./NavBar";
-import CreateServer from "./CreateServer";
-import { Route, Router } from "react-router-dom";
 
-function Home({ user, setUser }) {
+function Home({ user, setUser, servers }) {
   return (
     <div>
-      <NavBar logout={setUser} />
+      <NavBar logout={setUser} servers={servers}/>
       <div className="body">
         Home Page
       </div>

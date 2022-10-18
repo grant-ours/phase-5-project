@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   scope :api do
     resources :usersinservers, only:[]
     resources :chats, only:[]
-    resources :chatrooms, only:[]
-    resources :servers, only: [:index, :create]
+    resources :chatrooms, only:[:create]
+    resources :servers, only: [:index, :create, :show]
     resources :users, only:[]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

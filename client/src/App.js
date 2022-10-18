@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
-import CreateServer from "./CreateServer";
 import Home from "./Home";
 import Login from "./Login/Sign-up/Login";
 import "./App.css"
 
 function App() {
   const [user, setUser] = useState(undefined);
+  const [servers, setServers] = useState([])
+
+    useEffect(() => {
+        fetch("/api/servers")
+          .then((response) => {
+            if (response.ok) {
+              response.json().then((servers) => setServers(servers));
+            }
+          });
+      }, []);
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -18,7 +27,7 @@ function App() {
   return (
     <div className="App">
       {user ? (
-        <Home user={user} setUser={setUser} />
+        <Home user={user} setUser={setUser} servers={servers} />
       ) : (
         <Login setUser={setUser} />
       )}

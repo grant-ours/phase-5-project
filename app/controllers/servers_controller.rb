@@ -10,6 +10,14 @@ class ServersController < ApplicationController
         render json: server
     end
 
+    def show
+        user = User.find(session[:user_id])
+        server = user.servers.find(params[:id])
+        chatrooms = server.chatrooms
+        render json: chatrooms
+    end
+
+
     private
 
     def server_params

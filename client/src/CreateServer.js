@@ -1,10 +1,21 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
+import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
-import "./CreateServer.css"
 
 function CreateServer() {
     const [serverName, setServerName] = useState("")
     const [serverImg, setServerImg] = useState("")
+    const [servers, setServers] = useState([])
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch("/api/servers")
+          .then((response) => {
+            if (response.ok) {
+              response.json().then((servers) => setServers(servers));
+            }
+          });
+      }, []);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -19,15 +30,18 @@ function CreateServer() {
           }),
         }).then((r) => {
           if (r.ok) {
-            r.json().then((user) => console.log(user));
+            r.json().then((server) => {
+                setServers([...servers, server])
+                navigate(`/server/${server.id}`)
+            });
           }
         });
       }
 
     return (
         <div>
-            <NavBar />
-            <div className="create-server">
+            <NavBar servers={servers}/>
+            <div className="body">
                 Create a new server!
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="server_name">Server Name:</label>

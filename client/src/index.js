@@ -11,12 +11,18 @@ import {
 } from "react-router-dom";
 import Home from "./Home";
 import CreateServer from "./CreateServer";
+import ServerPage from "./ServerPage";
+import ChatroomPage from "./ChatroomPage"
+import CreateChatroom from "./CreateChatroom";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<App />} />
       <Route path="/create_server" element={<CreateServer />} />
+      <Route path="/server/:id" element={<ServerPage />} />
+      <Route path="/server/:id/create_chatroom" element={<CreateChatroom />} />
+      <Route path="/server/:sid/chatroom/:cid" element={<ChatroomPage/>} />
     </>
   )
 );
