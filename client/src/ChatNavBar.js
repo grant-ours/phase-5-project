@@ -1,20 +1,31 @@
+import { Link } from "react-router-dom";
+
 function ChatNavBar({ server_id, chatrooms }) {
-
-    const chatroom = chatrooms.map((chatroom) => {
-        return (
-            <li><a href={`/server/${server_id}/chatroom/${chatroom.id}`}>{chatroom.name}</a></li>
-        )
-        
-    })
-
+  const chatroom = chatrooms.map((chatroom) => {
     return (
-        <ul>
-            {chatroom}
-            <li><a href={`/server/${server_id}/create_chatroom`}>Create Chatroom?</a></li>
-        </ul>
-    )
+      <li key={"chatroom" + chatroom.id}>
+        <Link to={`/server/${server_id}/chatroom/${chatroom.id}`}>
+          {chatroom.name}
+        </Link>
+      </li>
+    );
+  });
+
+  return (
+    <ul>
+      {chatroom}
+      <li>
+        <Link to={`/server/${server_id}/create_chatroom`}>
+          Create Chatroom?
+        </Link>
+      </li>
+      <li>
+        <Link to={`/server_leave/${server_id}`}>
+          Leave Server?
+        </Link>
+      </li>
+    </ul>
+  );
 }
 
-export default ChatNavBar
-
-
+export default ChatNavBar;

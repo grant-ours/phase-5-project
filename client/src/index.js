@@ -9,11 +9,16 @@ import {
   Route,
   createRoutesFromElements,
 } from "react-router-dom";
-import Home from "./Home";
 import CreateServer from "./CreateServer";
 import ServerPage from "./ServerPage";
-import ChatroomPage from "./ChatroomPage"
+import ChatroomPage from "./ChatroomPage";
 import CreateChatroom from "./CreateChatroom";
+import LeaveServer from "./LeaveServer"
+import actionCable from "actioncable";
+import 'semantic-ui-css/semantic.min.css'
+
+const CableApp = {};
+CableApp.cable = actionCable.createConsumer("ws://localhost:3000/api/cable");
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +27,11 @@ const router = createBrowserRouter(
       <Route path="/create_server" element={<CreateServer />} />
       <Route path="/server/:id" element={<ServerPage />} />
       <Route path="/server/:id/create_chatroom" element={<CreateChatroom />} />
-      <Route path="/server/:sid/chatroom/:cid" element={<ChatroomPage/>} />
+      <Route path="/server_leave/:id" element={<LeaveServer />} />
+      <Route
+        path="/server/:sid/chatroom/:cid"
+        element={<ChatroomPage cable={CableApp.cable} />}
+      />
     </>
   )
 );

@@ -4,7 +4,6 @@ import NavBar from "./NavBar";
 
 function CreateServer() {
     const [serverName, setServerName] = useState("")
-    const [serverImg, setServerImg] = useState("")
     const [servers, setServers] = useState([])
     const navigate = useNavigate();
 
@@ -25,8 +24,7 @@ function CreateServer() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            name: serverName,
-            img: serverImg
+            name: serverName
           }),
         }).then((r) => {
           if (r.ok) {
@@ -51,13 +49,13 @@ function CreateServer() {
                     value={serverName}
                     onChange={(e) => setServerName(e.target.value)}
                     />
-                    <label htmlFor="server_Img">Server Icon:</label>
+                    {/* <label htmlFor="server_Img">Server Icon:</label>
                     <input
                     type="text"
                     id="server_Img"
                     value={serverImg}
                     onChange={(e) => setServerImg(e.target.value)}
-                    />
+                    /> */}
                     <button type="submit">Submit</button>
                 </form>
             </div>

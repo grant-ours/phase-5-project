@@ -1,3 +1,13 @@
+@font-face {
+  font-family: Bringme;
+  src: "client/src/Bringme.ttf";
+}
+
+html * {
+  font-size: 17px;
+  font-family: Bringme;
+}
+
 .body {
   margin-left: 19%;
   padding:1px 16px;
@@ -9,3 +19,9 @@
   padding:1px 16px;
   height:1000px;
 }
+
+.message-text {
+  position:fixed;
+  bottom:0px;
+  width:100%;
+ }

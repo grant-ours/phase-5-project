@@ -4,6 +4,11 @@ class ServersController < ApplicationController
         render json: user.servers
     end
 
+    def index2
+        servers = Server.all
+        render json: servers
+    end
+
     def create
         user = User.find(session[:user_id])
         server = user.servers.create(server_params)
@@ -15,6 +20,12 @@ class ServersController < ApplicationController
         server = user.servers.find(params[:id])
         chatrooms = server.chatrooms
         render json: chatrooms
+    end
+
+    def show2
+        user = User.find(session[:user_id])
+        server = user.servers.find(params[:id])
+        render json: server
     end
 
 

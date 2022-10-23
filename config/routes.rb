@@ -1,18 +1,24 @@
 Rails.application.routes.draw do
   scope :api do
-    resources :usersinservers, only:[]
-    resources :chats, only:[]
-    resources :chatrooms, only:[:create]
+    resources :usersinservers, only:[:create, :destroy]
+    resources :chatrooms, only:[:create] do 
+      resources :chats, only:[:index, :create]
+    end
     resources :servers, only: [:index, :create, :show]
     resources :users, only:[]
+    get "/me", to: "users#show"
+    post "/login", to: "sessions#create"
+    post "/signup", to: "users#create"
+    delete "/logout", to: "sessions#destroy"
+    get "/all", to: "servers#index2"
+    get "/showserver/:id", to: "servers#show2"
+
+    mount ActionCable.server => '/cable'
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
 
-  post "/login", to: "sessions#create"
-  get "/me", to: "users#show"
-  post "/signup", to: "users#create"
-  delete "/logout", to: "sessions#destroy"
+
 end
