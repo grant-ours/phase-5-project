@@ -39,10 +39,10 @@ function ListOfServers({ setServers, LoS }) {
   const server = servers2.map((server) => {
     return (
         <form key={server.id} onSubmit={handleSubmit}>
-            {/* <li> */}
-                {server.name}
+            <li>
+                <Link to={`/server/${server.id}`} server={server}>{server.name}</Link>
                 <button className="ui button">Join?</button>
-            {/* </li> */}
+            </li>
         </form>
     );
   });
