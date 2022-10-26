@@ -15,7 +15,6 @@ function ListOfServers({ setServers, LoS }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e)
     const sid = e.target.children[0].children[0].children[0].innerHTML.match(/(\d+)/)[0]
     fetch("/api/usersinservers", {
       method: "POST",
@@ -28,7 +27,6 @@ function ListOfServers({ setServers, LoS }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((join) => {
-            console.log(join)
             navigate(`/server/${sid}`)
             setServers([...LoS, server])
         });
