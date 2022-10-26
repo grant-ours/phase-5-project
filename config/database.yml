@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: Discode_production
-  username: Discode
-  password: <%= ENV["DISCODE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
