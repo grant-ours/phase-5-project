@@ -18,7 +18,7 @@ import actionCable from "actioncable";
 import 'semantic-ui-css/semantic.min.css'
 
 const CableApp = {};
-CableApp.cable = actionCable.createConsumer("ws://git.heroku.com/grantsdiscord.git/api/cable");
+CableApp.cable = actionCable.createConsumer("ws://grantsdiscord.herokuapp.com/api/cable");
 
 const router = createBrowserRouter(
   createRoutesFromElements(
