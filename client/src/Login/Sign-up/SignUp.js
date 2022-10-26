@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form, Button } from "semantic-ui-react";
 
 function SignUp({ setUser, setIsVisible }) {
   const [username, setUsername] = useState("");
@@ -30,10 +31,10 @@ function SignUp({ setUser, setIsVisible }) {
   }
 
   return (
-    <div>
-      Sign Up!
-      <form onSubmit={handleSubmit}>
-        <p></p>
+    <div className="container">
+      <h1 className="bigger">Sign Up!</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Field>
         <label htmlFor="username">Username:</label>
         <input
           type="text"
@@ -41,7 +42,8 @@ function SignUp({ setUser, setIsVisible }) {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <p></p>
+        </Form.Field>
+        <Form.Field>
         <label htmlFor="password">Password:</label>
         <input
           type="password"
@@ -49,7 +51,8 @@ function SignUp({ setUser, setIsVisible }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <p></p>
+        </Form.Field>
+        <Form.Field>
         <label htmlFor="password_confirmation">Confirm Password:</label>
         <input
           type="password"
@@ -57,10 +60,10 @@ function SignUp({ setUser, setIsVisible }) {
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
-        <p></p>
-        <button type="submit">Submit</button>
-      </form>
-      <button onClick={handleClick}>Have an account already? Login!</button>
+        </Form.Field>
+        <Button primary className="big_button" type="submit">Submit</Button>
+      </Form>
+      <Button secondary onClick={handleClick}>Have an account already? Login!</Button>
     </div>
   );
 }

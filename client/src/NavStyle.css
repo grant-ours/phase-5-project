@@ -1,4 +1,4 @@
-body {
+/* body {
     margin: 0;
   }
   
@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 0;
     width: 20%;
-    background-color: #f1f1f1;
+    background-color: #6B99C3;
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -26,6 +26,6 @@ body {
   }
   
   li a:hover:not(.active) {
-    background-color: #555;
+    background-color: #16354D;
     color: white;
-  }
+  } */

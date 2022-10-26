@@ -2,13 +2,15 @@ import NavBar from "./NavBar";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ChatNavBar from "./ChatNavBar";
-import { Input } from 'semantic-ui-react'
+import { TextArea, Form, Button} from 'semantic-ui-react'
+import Chats from "./Chats.js"
 
 function ChatroomPage({ cable }) {
   const [servers, setServers] = useState([]);
   const [chatrooms, setChatrooms] = useState([]);
   const [chats, setChats] = useState([]);
   const [newChat, setNewChat] = useState("");
+  const [currentChatroom, setCurrentChatroom] = useState({})
   const { sid, cid } = useParams();
 
   // this use effect is to get chatrooms
@@ -19,6 +21,14 @@ function ChatroomPage({ cable }) {
         setChatrooms(chatrooms);
       });
   }, [sid]);
+
+  useEffect(() => {
+    fetch(`/api/chatrooms/${cid}`).then((response) => {
+      if (response.ok) {
+        response.json().then((chatroom) => setCurrentChatroom(chatroom));
+      }
+    });
+  }, [cid]);
 
   useEffect(() => {
     fetch("/api/servers").then((response) => {
@@ -43,15 +53,6 @@ function ChatroomPage({ cable }) {
     return () => c.unsubscribe();
   }, [cable.subscriptions, cid]);
 
-  // useEffect(() => {
-  //   fetch(`/api/chatrooms/${cid}/chats`)
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         response.json().then((chats) => setChats(chats));
-  //       }
-  //     });
-  // }, []);
-
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -68,33 +69,26 @@ function ChatroomPage({ cable }) {
     });
   }
 
-  //add new chat component to handle fetches for other data
-  const chat = chats.map((chat) => {
-    return (
-    <div key={chat.id}>
-        {chat.text}
-    </div>
-    )
-  });
-
   return (
     <div>
       <NavBar servers={servers} />
       <div className="body">
         <ChatNavBar server_id={sid} chatrooms={chatrooms} />
         <div className="bodyy">
-          Chatroom
-          {chat}
-          <form className="message-text" onSubmit={handleSubmit}>
-            <Input
+          <h1 className="center">{currentChatroom.name} Chatroom</h1>
+          <Chats chats={chats}/>
+          <div className="message-text">
+          <Form onSubmit={handleSubmit}>
+            <TextArea
               type="text"
               id="new_chat"
               value={newChat}
               placeholder= "Message..."
               onChange={(e) => setNewChat(e.target.value)}
             />
-            <button className="ui button" type="submit">Send</button>
-          </form>
+            <Button primary type="submit">Send</Button>
+          </Form>
+          </div>
         </div>
       </div>
     </div>

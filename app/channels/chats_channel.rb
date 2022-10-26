@@ -5,7 +5,7 @@ class ChatsChannel < ApplicationCable::Channel
     stream_for room
     # ActionCable.server.broadcast("chats_#{params[:chatroom_id]}", Chatroom.find(params[:chatroom_id]).chats)
     # ActionCable.server.broadcast("chats_#{params[:chatroom_id]}", room.chats)
-    transmit(room.chats)
+    transmit(ActiveModelSerializers::SerializableResource.new(room.chats, each_serializer: ChatSerializer))
   end
 
   def unsubscribed

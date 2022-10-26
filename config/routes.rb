@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   scope :api do
     resources :usersinservers, only:[:create, :destroy]
-    resources :chatrooms, only:[:create] do 
+    resources :chatrooms, only:[:create, :show] do 
       resources :chats, only:[:index, :create]
     end
     resources :servers, only: [:index, :create, :show]
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
     get "/all", to: "servers#index2"
     get "/showserver/:id", to: "servers#show2"
+    get "/users/:id", to: "users#show_id"
 
     mount ActionCable.server => '/cable'
   end

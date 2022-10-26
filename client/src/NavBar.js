@@ -23,7 +23,7 @@ function NavBar({ logout, servers }) {
     <nav className="navbar">
       <ul>
         <li>
-            <Link to="/">List of Servers</Link>
+            <Link to="/">List of All Servers</Link>
         </li>
         {server}
         <li>

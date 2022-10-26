@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
+import { Form, Button } from "semantic-ui-react"
 
 function CreateServer() {
     const [serverName, setServerName] = useState("")
@@ -40,8 +41,10 @@ function CreateServer() {
         <div>
             <NavBar servers={servers}/>
             <div className="body">
-                Create a new server!
-                <form onSubmit={handleSubmit}>
+                <div className="container">
+                <h1>Create a New Server!</h1>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Field>
                     <label htmlFor="server_name">Server Name:</label>
                     <input
                     type="text"
@@ -49,15 +52,10 @@ function CreateServer() {
                     value={serverName}
                     onChange={(e) => setServerName(e.target.value)}
                     />
-                    {/* <label htmlFor="server_Img">Server Icon:</label>
-                    <input
-                    type="text"
-                    id="server_Img"
-                    value={serverImg}
-                    onChange={(e) => setServerImg(e.target.value)}
-                    /> */}
-                    <button type="submit">Submit</button>
-                </form>
+                    </Form.Field>
+                    <Button primary type="submit">Create!</Button>
+                </Form>
+                </div>
             </div>
         </div>
     )

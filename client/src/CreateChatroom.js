@@ -1,7 +1,8 @@
 import NavBar from "./NavBar"
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom";
 import ChatNavBar from "./ChatNavBar";
+import {Form, Button} from "semantic-ui-react"
 
 function CreateChatroom() {
     const [servers, setServers] = useState([])
@@ -16,7 +17,6 @@ function CreateChatroom() {
           .then((r) => r.json())
           .then((chatrooms) => {
             setChatrooms(chatrooms);
-            console.log(chatrooms)
           });
       }, [id]);
    
@@ -29,7 +29,7 @@ function CreateChatroom() {
           });
       }, []);
 
-      function handleSubmit(e) {
+      function handleClick(e) {
         e.preventDefault();
         fetch("/api/chatrooms", {
           method: "POST",
@@ -56,8 +56,10 @@ function CreateChatroom() {
             <div className="body">
                 <ChatNavBar server_id={id} chatrooms={chatrooms}/>
                 <div className="bodyy">
-                    Create a new chatroom!
-                    <form onSubmit={handleSubmit}>
+                    <div className="container">
+                    <h1>Create a New Chatroom!</h1>
+                    <Form>
+                        <Form.Field>
                         <label htmlFor="chatroom_name">Chatroom name:</label>
                         <input
                         type="text"
@@ -65,8 +67,10 @@ function CreateChatroom() {
                         value={chatroomName}
                         onChange={(e) => setChatroomName(e.target.value)}
                         />
-                        <button type="submit">Submit</button>
-                    </form>
+                        </Form.Field>
+                        <Button primary onClick={handleClick}>Create!</Button>
+                    </Form>
+                    </div>
                 </div>
             </div>
         </div>

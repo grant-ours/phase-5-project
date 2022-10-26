@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./ChatNavStyle.css";
 
 function ChatNavBar({ server_id, chatrooms }) {
   const chatroom = chatrooms.map((chatroom) => {

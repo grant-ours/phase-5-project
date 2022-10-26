@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Button, Card } from 'semantic-ui-react'
 
 function ListOfServers({ setServers, LoS }) {
   const [servers2, setServers2] = useState([]);
@@ -9,14 +10,13 @@ function ListOfServers({ setServers, LoS }) {
       .then((r) => r.json())
       .then((servers) => {
         setServers2(servers);
-        console.log(servers);
       });
   }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log(e)
-    const sid = e.target.firstChild.childNodes[0].pathname.match(/(\d+)/)[0]
+    const sid = e.target.children[0].children[0].children[0].innerHTML.match(/(\d+)/)[0]
     fetch("/api/usersinservers", {
       method: "POST",
       headers: {
@@ -39,18 +39,25 @@ function ListOfServers({ setServers, LoS }) {
   const server = servers2.map((server) => {
     return (
         <form key={server.id} onSubmit={handleSubmit}>
-            <li>
-                <Link to={`/server/${server.id}`} server={server}>{server.name}</Link>
-                <button className="ui button">Join?</button>
-            </li>
+            <Card className="center">
+                <Card.Content>
+                    <Card.Header>{server.name} | Server #{server.id}</Card.Header>
+                </Card.Content>
+                <Card.Content extra>
+                    <Button primary>
+                        Join?
+                    </Button>
+                </Card.Content>
+            </Card>
         </form>
     );
   });
 
   return (
     <div>
-      Hello this is the List of Servers
-      {server}
+        <Card.Group centered>
+            {server}
+        </Card.Group>
     </div>
   );
 }

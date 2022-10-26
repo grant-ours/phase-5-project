@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import NavBar from "./NavBar";
+import {Form, Button} from "semantic-ui-react"
 
 function LeaveServer() {
     const [servers, setServers] = useState([])
@@ -24,9 +25,9 @@ function LeaveServer() {
               response.json().then((currentServer) => setCurrentServer(currentServer));
             }
           });
-      }, []);
+      }, [id]);
 
-    function handleSubmit(e) {
+    function handleClick(e) {
         e.preventDefault()
         fetch(`/api/usersinservers/${id}`, {
         method: "DELETE",
@@ -41,10 +42,12 @@ function LeaveServer() {
         <div>
             <NavBar servers={servers}/>
             <div className="body">
-                <form onSubmit={handleSubmit}>
-                    {`Are you sure you want to leave ${currentServer.name}?`}
-                    <button type="submit">Yes!</button>
-                </form>
+                <div className="container">
+                <Form>
+                    <h1>{`Are you sure you want to leave the ${currentServer.name} server?`}</h1>
+                </Form>
+                <Button primary onClick={handleClick}>Yes!</Button>
+                </div>
             </div>
         </div>
     )

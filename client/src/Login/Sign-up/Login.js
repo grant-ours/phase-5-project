@@ -6,12 +6,31 @@ function Login({ setUser }) {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
-    <div>
+    <div className="login_signup">
+      <p className="center_pad">Welcome to Discode!</p>
       {isVisible ? (
         <LoginForm setUser={setUser} setIsVisible={setIsVisible} />
       ) : (
         <SignUp setUser={setUser} setIsVisible={setIsVisible} />
       )}
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
     </div>
   );
 }

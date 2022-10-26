@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form, Button } from "semantic-ui-react";
 
 function LoginForm({ setUser, setIsVisible }) {
   const [username, setUsername] = useState("");
@@ -26,22 +27,26 @@ function LoginForm({ setUser, setIsVisible }) {
     });
   }
   return (
-    <div>
-      Login!
-      <form onSubmit={handleSubmit}>
+    <div className="container">
+      <h1 className="bigger">Login!</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Field>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        </Form.Field>
+        <Form.Field>
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
-      </form>
-      <button onClick={handleClick}>Dont have an account? Sign up!</button>
+        </Form.Field>
+        <Button primary type="submit">Login</Button>
+      </Form>
+      <Button secondary onClick={handleClick}>Dont have an account? Sign up!</Button>
     </div>
   );
 }

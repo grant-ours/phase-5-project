@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
       {user ? (
-        <Home user={user} setUser={setUser} servers={servers} setServers={setServers}/>
+        <Home setUser={setUser} servers={servers} setServers={setServers}/>
       ) : (
         <Login setUser={setUser} />
       )}

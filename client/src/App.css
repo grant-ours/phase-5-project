@@ -1,27 +1,70 @@
-@font-face {
-  font-family: Bringme;
-  src: "client/src/Bringme.ttf";
-}
-
 html * {
   font-size: 17px;
-  font-family: Bringme;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .body {
   margin-left: 19%;
   padding:1px 16px;
   height:1000px;
+  background-color: #82a9cec4;
 }
 
 .bodyy {
   margin-left: 25%;
   padding:1px 16px;
-  height:1000px;
+  height:1005px;
+  background-color: #82a9cec4;
 }
 
 .message-text {
   position:fixed;
   bottom:0px;
-  width:100%;
+  width: 55%;
+ }
+
+ .center {
+  text-align: center;
+ }
+
+ .chat_hover:hover:not(.active) {
+  background-color: rgba(85, 85, 85, 0.264);
+  color: white;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid red;
+  border-radius: 8px;
+  padding: 20px;
+  width: 30%;
+  margin:0 auto;
+  margin-top: 10%;
+  border-color: #16354d;
+  background-color: #E4E5EA;
+  color: #0C151C
+}
+
+.big_button {
+  flex-grow: 4;
+}
+
+.center_pad {
+  text-align: center;
+  padding-top: 5%;
+  font-size: 50px;
+  font-weight: bold;
+ }
+
+ .App {
+  background-color: #82a9cec4;
+  background-size:cover;
+ }
+
+ .bigger {
+  font-size: 35px;
+  font-weight: bold;
  }

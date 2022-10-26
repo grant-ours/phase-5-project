@@ -6,6 +6,11 @@ class ChatroomsController < ApplicationController
         render json: chatroom
     end
 
+    def show
+        chatroom = Chatroom.find(params[:id])
+        render json: chatroom
+    end
+
     private
 
     def chatroom_params

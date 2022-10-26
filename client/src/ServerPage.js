@@ -6,6 +6,7 @@ import ChatNavBar from "./ChatNavBar";
 function ServerPage() {
   const [servers, setServers] = useState([]);
   const [chatrooms, setChatrooms] = useState([]);
+  const [currentServer, setCurrentServer] = useState({})
   const { id } = useParams();
 
   // this use effect is to get chatrooms
@@ -24,12 +25,28 @@ function ServerPage() {
       }
     });
   }, []);
+
+  useEffect(() => {
+    fetch(`/api/showserver/${id}`)
+      .then((response) => {
+        if (response.ok) {
+          response.json().then((currentServer) => setCurrentServer(currentServer));
+        }
+      });
+  }, [id]);
+
   return (
     <div>
       <NavBar servers={servers} />
       <div className="body">
         <ChatNavBar chatrooms={chatrooms} server_id={id} />
-        <div className="bodyy">Server Page</div>
+        <div className="bodyy">
+            <div className="container">
+            <h1>Welcome to the {currentServer.name} Server!</h1>
+            <h3>Feel free to select/create a chatroom and get chatting!</h3>
+            
+            </div>
+        </div>
       </div>
     </div>
   );
