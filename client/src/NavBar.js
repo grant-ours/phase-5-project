@@ -14,7 +14,9 @@ function NavBar({ logout, servers }) {
   const server = servers.map((server) => {
     return (
       <li key={server.id}>
-        <Link to={`/server/${server.id}`} server={server} >{server.name}</Link>
+        <Link to={`/server/${server.id}`} server={server}>
+          {server.name}
+        </Link>
       </li>
     );
   });
@@ -23,7 +25,7 @@ function NavBar({ logout, servers }) {
     <nav className="navbar">
       <ul>
         <li>
-            <Link to="/">List of All Servers</Link>
+          <Link to="/">List of All Servers</Link>
         </li>
         {server}
         <li>
