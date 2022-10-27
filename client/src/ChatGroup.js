@@ -26,7 +26,7 @@ function ChatGroup({ chats }) {
     return <Chat key={"chat" + chat.id} {...chat} />;
   });
   return (
-    <div className="chat_hover">
+    <div>
       <Feed>
         <Feed.Event>
           <Feed.Content>
