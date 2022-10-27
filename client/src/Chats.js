@@ -1,11 +1,11 @@
 import React from "react";
-import Chat from "./Chat";
+import ChatGroup from "./ChatGroup";
 
 function Chats({ chats }) {
   const chatGroups = [];
   let lastUserId;
   chats.forEach((c) => {
-    if (c.user_id == lastUserId) {
+    if (c.user_id === lastUserId) {
       chatGroups[chatGroups.length - 1].push(c);
     } else {
       chatGroups.push([c]);
@@ -13,13 +13,13 @@ function Chats({ chats }) {
     lastUserId = c.user_id;
   });
 
-  // const chatGroupElements = chatGroups.map(cg => {
-  //     <ChatGroup chats={cg}/>
-  // })
-  const chat = chats.map((chat) => {
-    return <Chat key={"chat" + chat.id} {...chat} />;
-  });
+  const chatGroupElements = chatGroups.map(cg => {
+      return <ChatGroup chats={cg}/>
+  })
+//   const chat = chats.map((chat) => {
+//     return <Chat key={"chat" + chat.id} {...chat} />;
+//   });
 
-  return <div>{chat}</div>;
+  return <div>{chatGroupElements}</div>;
 }
 export default Chats;

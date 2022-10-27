@@ -13,14 +13,13 @@ import CreateServer from "./CreateServer";
 import ServerPage from "./ServerPage";
 import ChatroomPage from "./ChatroomPage";
 import CreateChatroom from "./CreateChatroom";
-import LeaveServer from "./LeaveServer";
+import LeaveServer from "./LeaveServer"
 import actionCable from "actioncable";
-import "semantic-ui-css/semantic.min.css";
+import 'semantic-ui-css/semantic.min.css'
 
 const CableApp = {};
-CableApp.cable = actionCable.createConsumer(
-  "wss://grantsdiscord.herokuapp.com/api/cable"
-);
+CableApp.cable = actionCable.createConsumer("ws://localhost:3000/api/cable");
+//wss://grantsdiscord.herokuapp.com/api/cable
 
 const router = createBrowserRouter(
   createRoutesFromElements(
