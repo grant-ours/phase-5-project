@@ -1,6 +1,6 @@
 # README
 
-#Discode
+# Discode
 
 My attempt at a Discord like chatroom app.
 
