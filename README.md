@@ -2,7 +2,7 @@
 
 # Discode
 
-My attempt at a Discord like chatroom app.
+Discord like chatroom app!
 
 ### A live version of this website is deployed using Render here:
 [Live Version](https://discode-1zsp.onrender.com/)
